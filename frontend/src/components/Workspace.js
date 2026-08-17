@@ -188,8 +188,8 @@ const Workspace = () => {
             </div>
           </div>
 
-          <div class="panel="0;">
-          <h3>Terminal</h3on class="ter
+          <div className="panel">
+            <h3 className="terminal-title">Terminal</h3>
           <div className="editor-status-bar">
             <div className="editor-info">
               <span>Spaces: 4aces</span>
@@ -231,6 +231,7 @@ const Workspace = () => {
               <button onClick={() => console.log('Send clicked')}>Send</button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
