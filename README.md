@@ -74,3 +74,12 @@ See the `deployment/` directory for Kubernetes manifests and CI/CD workflow deta
 
 This project is licensed under the MIT License.
 
+
+## Status (checkup 2026-08-18)
+> Revisado na campanha de repo-checkup. Relatorio completo: `~/repo-checkup/reports/collabcode.md` (local do mantenedor, nao no repo).
+- **Build/Install**: PASS — backend `npm ci` (457 pacotes, 0 vulns; `package-lock.json` adicionado no checkup); frontend `npm ci` (1525 pacotes) + `npm run build` "Compiled successfully".
+- **Smoke test**: N/A — nenhum arquivo de teste; `npm test` retorna "No tests found" (backend jest + frontend CRA).
+- **Para rodar de ponta-a-ponta precisa de**: PostgreSQL via `docker-compose.yml` (senha default de dev `collabcode_pass`) — não requerido para os checks de build/install Node; presente para runtime opcional. Nenhum outro serviço externo obrigatório citado no checkup.
+- **Inconsistencias conhecidas (README vs codigo)**: nenhuma (README não citado com inconsistência; há 4 arquivos `.ts` órfãos NestJS no backend, não compilados — dead code).
+- **Seguranca**: backend 0 vulns; frontend 30 vulns (14 high, 7 moderate, 9 low) transitivas de `react-scripts@5.0.1` (ex.: `@tootallnate/once`, `nth-check`, `postcss`, `uuid`); único fix é `npm audit fix --force` (`react-scripts@0.0.0`, breaking) → NÃO aplicado (decisão humana). Secret scan: nenhum segredo real.
+- **Estado resumido**: build verde (frontend CRA compila; backend instala), mas 30 vulns no frontend (14 high) exigem ação humana (breaking) e há zero testes + dead code `.ts` órfão no backend; Docker/PostgreSQL opcional para runtime.
